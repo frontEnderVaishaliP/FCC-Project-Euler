@@ -162,9 +162,52 @@ const sumSquareDifference = (n) => {
 // What is the nth prime number?
 function nthPrime(n) {
   const primeArr = [];
-  let counter = 0;
 
-  return primeArr;
+  const checkPrime = (num) => {
+    if(num < 2) return false; //Numbers less than 2 are not prime numbers
+    for(let i = 2; i <= Math.sqrt(num); i++){
+        if(num % i === 0) return false; //if a divisor is found, num is not prime
+    }
+    return true; //if no divisor is found, num is a prime number
+  }
+
+  for(let i = 2; primeArr.length < n; i++){
+    if(checkPrime(i)) primeArr.push(i);
+  }
+
+  return primeArr[n - 1];
 }
 
-// console.log(nthPrime(6));
+console.log(nthPrime(6));
+console.log(nthPrime(10001));
+
+
+
+
+//--------------------------------------------------------------------------------------------
+// Problem 10: Summation of primes
+// The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+// Find the sum of all the primes below n.
+
+function primeSummation(n) {
+
+  let sumPrime = 0;
+
+  // checking if number is prime
+  const checkPrime = (num) => {
+      if(num < 2) return false; //Numbers less than 2 are not prime numbers
+      for(let i = 2; i <= Math.sqrt(num); i++){
+          if(num % i === 0) return false; //if a divisor is found, num is not prime
+      }
+      return true; //if no divisor is found, num is a prime number
+  }
+
+  // if number is prime and less than n, add to  sumPrime
+  for(let i = 2; i < n; i++){
+      if(checkPrime(i)) sumPrime += i;
+  }
+
+  return sumPrime;
+}
+
+console.log(primeSummation(2000000)); //142913828922
